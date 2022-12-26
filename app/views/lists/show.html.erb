@@ -1,0 +1,14 @@
+<div class="container mt-5">
+  <h1><%= @list.name %></h1>
+
+  <% @bookmarks = Bookmark.where(list_id: @list ) %>
+  <% @bookmarks.each do |bookmark| %>
+    <div>
+      <%= image_tag(bookmark.movie.poster_url, height: '150') %>
+      <h3><%= bookmark.movie.title %></h3>
+      <p><%= bookmark.comment %></p>
+    </div>
+  <% end %>
+
+  <%= link_to "Back", lists_path %>
+</div>
