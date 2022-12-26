@@ -16,9 +16,17 @@ puts "Database cleaned"
 url = "http://tmdb.lewagon.com/movie/top_rated"
 
 # importe les résultats des 10 premières pages
-10.times do |i|
-  puts "Importing movies from page #{i + 1}"
-  movies = JSON.parse(URI.open("#{url}?page=#{i + 1}").read)['results']
+# https://api.themoviedb.org/3/discover/movie?api_key=### . => page 1
+# https://api.themoviedb.org/3/discover/movie?api_key=###&page=2 => page 2
+
+# 10.times do |i|
+  # puts "Importing movies from page #{i + 1}"
+  # array de 20 films pour une page i
+  # movies = JSON.parse(URI.open("#{url}?page=#{i + 1}").read)['results']
+
+  puts "Importing movies from page 1"
+  movies = JSON.parse(URI.open(url).read)['results']
+  # je crée les films de la page i
   movies.each do |movie|
     puts "Creating #{movie['title']}"
     base_poster_url = "https://image.tmdb.org/t/p/original"
@@ -29,5 +37,5 @@ url = "http://tmdb.lewagon.com/movie/top_rated"
       rating: movie['vote_average']
     )
   end
-end
+# end
 puts "Movies created"
