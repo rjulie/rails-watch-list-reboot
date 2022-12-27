@@ -1,6 +1,6 @@
 .navbar-lewagon {
   justify-content: space-between;
-  background-color: transparent;
+  background-color: white;
   z-index: 999;
   height: 8vh;
 }
@@ -14,5 +14,15 @@
 }
 
 .nav-link {
-  color: white;
+  color: #5e5e5e;
+  &:hover {
+    color: #292929;
+  }
+}
+
+.navbar-bg {
+  justify-content: space-between;
+  background-color: transparent;
+  z-index: 999;
+  height: 8vh;
 }

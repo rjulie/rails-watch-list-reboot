@@ -1,4 +1,4 @@
-<div class="navbar navbar-expand-sm navbar-light navbar-lewagon px-3">
+<div class="navbar  <%= "navbar-bg" if params[:action] == "index" %> navbar-expand-sm navbar-light navbar-lewagon px-3">
   <%= link_to root_path do %>
     <%= image_tag "popcorn.png", alt: "alttext", class: "logo", height: "50" %>
   <% end %>
@@ -8,12 +8,9 @@
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav me-auto">
-      <li class="nav-item active">
-        <%= link_to "All my lists", root_path, class: "nav-link" %>
+      <li class="nav-item active  <%= "d-none" if params[:action] == "index" %>">
+        <%= link_to "My lists", root_path, class: "nav-link" %>
       </li>
-      <%# <li class="nav-item active"> %>
-        <%# <%= link_to "New list", new_list_path, class: "nav-link" %>
-      <%# </li> %>
     </ul>
   </div>
 </div>

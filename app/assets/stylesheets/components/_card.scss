@@ -1,3 +1,4 @@
+// CARDS LISTS
 .card-lists {
   height: 20vh;
   display: flex;
@@ -31,10 +32,24 @@
 }
 
 .new-card {
-  background-color: #ab9ca4;
+  background-color: #975c7566;
   h3 {
     color: white;
     font-size: 70px;
     font-weight: bold;
   }
 }
+
+// CARD NEW LIST
+.card-container {
+  display: flex;
+  justify-content: center;
+}
+
+.card-form {
+  height: 82vh;
+}
+
+
+
+// CARD SHOW LIST
