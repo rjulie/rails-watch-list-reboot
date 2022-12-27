@@ -32,7 +32,7 @@
 }
 
 .new-card {
-  background-color: #975c7566;
+  background-color: #ef3064;
   h3 {
     color: white;
     font-size: 70px;
@@ -51,5 +51,46 @@
 }
 
 
-
 // CARD SHOW LIST
+.header-list {
+  display: flex;
+  justify-content: space-between;
+  height: 5vh;
+  margin: 16px 0px;
+}
+
+.cards-movies {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.cards-movies-min {
+  height: 40vh;
+}
+
+.card-movie {
+  margin: 8px;
+}
+
+.movie-poster {
+  border-radius: 5px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+}
+
+.card-movie-info {
+  display: flex;
+  padding-top: 8px;
+}
+
+.movie-info-text {
+  flex-grow: 1;
+  p {
+    color: grey;
+    font-size: 14px;
+    font-weight: lighter;
+  }
+  h6 {
+    width: 330px;
+    margin-bottom: 4px;
+  }
+}

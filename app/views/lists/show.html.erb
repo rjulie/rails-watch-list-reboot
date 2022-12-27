@@ -1,55 +1,69 @@
-<div class="container mt-5">
-  <h1><%= @list.name %></h1>
-
-  <!-- MOVIES -->
-  <div>
-    <% @bookmarks = Bookmark.where(list_id: @list ) %>
-    <% @bookmarks.each do |bookmark| %>
-      <div>
-        <%= image_tag(bookmark.movie.poster_url, height: '150') %>
-        <h3><%= bookmark.movie.title %></h3>
-        <p><%= bookmark.comment %></p>
-        <%= link_to "delete", bookmark_path(bookmark),
-        data: { turbo_method: :delete, turbo_confirm: "Are you sure you want to remove #{bookmark.movie.title} from your #{@list.name} list"}%>
-      </div>
-    <% end %>
-  </div>
-
-  <!-- NEW BOOKMARK -->
-  <div class="mt-3 d-flex align-items-center">
-    <!-- Button trigger modal -->
-    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#bookMarkModal">
-      Add a movie
-    </button>
-      <%= link_to "Back", lists_path, class: "mx-2" %>
-  </div>
-
-  <!-- REVIEWS -->
+<div class="container mt-5 container-list">
   <div class="row">
-    <div class="col-12 col-sm-6">
-      <h3>Reviews</h3>
-      <% @list.reviews.each do |review| %>
-        <div>
-          <% review.rating.times do %>
-            <i class="fas fa-star star-yellow"></i>
-          <% end %>
-          <small><em class="text-muted"><%= distance_of_time_in_words_to_now(review.created_at) %> ago</em></small>
-          <p class="mb-0"><%= review.comment %></p>
-        </div>
-        <hr>
-      <% end %>
+    <div class="col-12">
+      <div class="header-list">
+        <h1><%= @list.name.capitalize %></h1>
+        <button type="button" class="btn btn-primary btn-list" data-bs-toggle="modal" data-bs-target="#bookMarkModal">
+          Add a movie
+        </button>
+      </div>
     </div>
-    <div class="col-12 col-sm-6">
-      <div class="bg-white rounded p-3">
-        <h5>Add your review</h5>
-        <%= simple_form_for [@list, @review]  do |f| %>
-          <%= f.input :comment, placeholder: "Add your review here..." %>
-          <%= f.input :rating, as: :select, collection: (1..5), required: true, prompt: "What's your rating", input_html: {data: { controller: "star-rating" } } %>
-          <%= f.submit class:"btn btn-primary" %>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <!-- MOVIES -->
+      <div class="cards-movies <%= "card-movies-min" if @list.movies.empty? %>">
+        <% @bookmarks = Bookmark.where(list_id: @list) %>
+        <% @bookmarks.each do |bookmark| %>
+          <div class="card-movie">
+            <%= image_tag(bookmark.movie.poster_url, height: '200', class:"movie-poster") %>
+            <div class="card-movie-info">
+              <div class="movie-info-text">
+                <h6><%= bookmark.movie.title %></h6>
+                <p><%= bookmark.comment %></p>
+              </div>
+              <%= link_to bookmark_path(bookmark),
+                          data: { turbo_method: :delete, turbo_confirm: "Are you sure you want to remove #{bookmark.movie.title} from your #{@list.name} list"} do %>
+                <i class="fa fa-minus-circle"></i>
+              <% end %>
+            </div>
+          </div>
         <% end %>
       </div>
     </div>
   </div>
+  <hr>
+  <div class="row">
+    <% if @list.movies.any? %>
+      <h3>Reviews</h3>
+      <div class="col-12 col-lg-8">
+        <!-- REVIEWS -->
+        <div>
+          <% @list.reviews.each do |review| %>
+            <div>
+              <% review.rating.times do %>
+                <i class="fas fa-star star-yellow"></i>
+              <% end %>
+              <small><em class="text-muted"><%= distance_of_time_in_words_to_now(review.created_at) %> ago</em></small>
+              <p class="mb-0"><%= review.comment %></p>
+            </div>
+            <hr>
+          <% end %>
+        </div>
+      </div>
+      <div class="col-12 col-lg-4">
+          <div class="bg-white rounded p-3">
+            <h5>Add your review</h5>
+            <%= simple_form_for [@list, @review]  do |f| %>
+              <%= f.input :comment, placeholder: "Add your review here..." %>
+              <%= f.input :rating, as: :select, collection: (1..5), required: true, prompt: "What's your rating", input_html: {data: { controller: "star-rating" } } %>
+              <%= f.submit class:"btn btn-primary btn-list" %>
+            <% end %>
+          </div>
+      </div>
+    <% end %>
+  </div>
+
   <!-- MODAL -->
   <%= render "bookmarks/modal", list: @list, bookmark: @bookmark %>
 </div>
