@@ -1,0 +1,40 @@
+.card-lists {
+  height: 20vh;
+  display: flex;
+  align-items: center;
+}
+
+.card-list {
+  background-color: #d6d2d9;
+  background-size: cover;
+  background-position: center;
+  height: 150px;
+  width: 200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 24px;
+  font-weight: bold;
+  border-radius: 5px;
+  margin: 8px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  transition: all 0.4s;
+  h3 {
+    font-size: 24px;
+    font-weight: bold;
+    color: #4f494a;
+  }
+}
+
+.card-list:hover {
+  transform: scale(1.05);
+}
+
+.new-card {
+  background-color: #ab9ca4;
+  h3 {
+    color: white;
+    font-size: 70px;
+    font-weight: bold;
+  }
+}

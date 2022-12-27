@@ -1,11 +1,23 @@
+<div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(https://images.unsplash.com/photo-1536440136628-849c177e76a1?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1625&q=80);">
+  <div class="container">
+    <h1><span data-controller="typed-js"></span></h1>
+  </div>
+</div>
+
 <div class="container mt-5">
-  <h1><span data-controller="typed-js"></span></h1>
-
-  <ul>
-    <% @lists.each do |list| %>
-      <li><%= link_to list.name, list_path(list) %></li>
-    <% end %>
-  </ul>
-
-  <%= link_to "New list", new_list_path %>
+  <div class="card-lists">
+      <% @lists.each do |list| %>
+        <%= link_to list_path(list) do %>
+          <div class="card-list">
+            <%# style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url();" %>
+            <h3><%= list.name.capitalize %></h3>
+          </div>
+        <% end %>
+      <% end %>
+      <%= link_to new_list_path do %>
+        <div class="card-list new-card">
+          <h3><i class="fa-sharp fa-solid fa-plus"></i></h3>
+        </div>
+      <% end %>
+  </div>
 </div>
