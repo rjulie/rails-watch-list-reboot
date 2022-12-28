@@ -8,8 +8,7 @@
   <div class="card-lists">
       <% @lists.each do |list| %>
         <%= link_to list_path(list) do %>
-          <div class="card-list">
-            <%# style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url();" %>
+          <div class="card-list" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url('<%= cl_image_path list.photo.key, crop: :fill %>');">
             <h3><%= list.name.capitalize %></h3>
           </div>
         <% end %>
