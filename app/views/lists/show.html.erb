@@ -10,10 +10,15 @@
     </div>
   </div>
   <hr>
+  <% if @list.movies.empty? %>
+    <div class="cards-movies-min">
+      <p>Congratulations, you've added a new list, you can add now your first movie <i class="fas fa-smile-wink"></i></p>
+    </div>
+  <% end %>
   <div class="row">
     <div class="col-12">
       <!-- MOVIES -->
-      <div class="cards-movies <%= "card-movies-min" if @list.movies.empty? %>">
+      <div class="cards-movies">
         <% @bookmarks = Bookmark.where(list_id: @list) %>
         <% @bookmarks.each do |bookmark| %>
           <div class="card-movie">
@@ -52,7 +57,7 @@
           <% end %>
         </div>
       </div>
-      <div class="col-12 col-lg-4">
+      <div class="col-12  <%= "col-lg-4" if @list.reviews.any? %>">
           <div class="bg-white rounded p-3">
             <h5>Add your review</h5>
             <%= simple_form_for [@list, @review]  do |f| %>

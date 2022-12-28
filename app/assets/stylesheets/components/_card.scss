@@ -54,6 +54,7 @@
 .header-list {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   height: 5vh;
   margin: 16px 0px;
 }
@@ -61,10 +62,14 @@
 .cards-movies {
   display: flex;
   flex-wrap: wrap;
+  min-height: 60vh;
 }
 
 .cards-movies-min {
-  height: 40vh;
+  height: 60vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .card-movie {
